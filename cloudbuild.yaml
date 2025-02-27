@@ -1,0 +1,6 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+steps:
+  #code build using container
+  - name: 'gcr.io/cloud-builders/docker'
+      args: ['build', '-t', 'sohail:apachev1', '.']
