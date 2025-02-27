@@ -4,12 +4,12 @@ steps:
   #Step 1
   #using code build command to build image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'sohail:apachev1', '.']
+    args: ['build', '-t', 'sohail-app:v1', '.']
 
   #Step 2
   # do SAST in build container image with trivy
   - name: 'aquasec/trivy:latest'
-    args: ['image' ,'--severity' ,'HIGH,CRITICAL' ,'--format', 'json',  '--output' , '/workspace/soh_imagescan.json','--exit-code','0' ,'sohail:apachev1']
+    args: ['image' ,'--severity' ,'HIGH,CRITICAL' ,'--format', 'json',  '--output' , '/workspace/soh_imagescan.json','--exit-code','0' ,'sohail-app:v1']
     
   # STEP 3 upload trivy result to GSC
   - name:  'google/cloud-sdk'
@@ -19,7 +19,7 @@ steps:
   #Creating container
   - name: 'gcr.io/cloud-builders/docker'
     args: ['run', '-idt', '--name', 'sohctl',
-     '-p' ,'8008:80', '--rm' ,'sohail:apachev1'
+     '-p' ,'8008:80', '--rm' ,'sohail-app:v1'
     ]
 
   #Step 5 App running status by logging into same container and doing curl
@@ -28,8 +28,8 @@ steps:
 
   #Step 6 tag docker image into artifact registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['tag', 'sohail:apachev1', 'asia-docker.pkg.dev/vodafone-devsecops/vodafone-webapp-images/sohail:apachev1']
+    args: ['tag', 'sohail-app:v1', 'asia-docker.pkg.dev/vodafone-devsecops/vodafone-webapp-images/sohail-app:v1']
 
   #Step 7 Push image into artifact registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'asia-docker.pkg.dev/vodafone-devsecops/vodafone-webapp-images/sohail:apachev1']
+    args: ['push', 'asia-docker.pkg.dev/vodafone-devsecops/vodafone-webapp-images/sohail-app:v1']
