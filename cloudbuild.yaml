@@ -8,7 +8,7 @@ steps:
   #Step 2
   # do SAST in build container image with trivy
   - name: 'aquasec/trivy:latest'
-    args: ['image' ,'--severity' ,'HIGH,CRITICAL' ,'--format', 'json',  '--output' , '/tmp/soh_imagescan.json', 'sohail:apachev1']
+    args: ['image' ,'--severity' ,'HIGH,CRITICAL' ,'--format', 'json',  '--output' , '/tmp/soh_imagescan.json','--exit-code','1' ,'sohail:apachev1']
   #Step3
   #Creating container
   - name: 'gcr.io/cloud-builders/docker'
