@@ -8,6 +8,6 @@ steps:
   #Step 2
   #Creating container
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['run', '-idt', '--name', 'ashuc11',
-     '-p' ,'1234:80', '--rm' ,'ashuwebapp:v1'
+    args: ['run', '-idt', '--name', 'sohctl',
+     '-p' ,'8008:80', '--rm' ,'sohail:apachev1'
     ]
