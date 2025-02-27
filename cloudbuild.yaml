@@ -21,3 +21,7 @@ steps:
     args: ['run', '-idt', '--name', 'sohctl',
      '-p' ,'8008:80', '--rm' ,'sohail:apachev1'
     ]
+
+  #Step 5 App running status by logging into same container and doing curl
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['exec', 'sohctl', 'curl', '-f', 'http://localhost/health.html']
