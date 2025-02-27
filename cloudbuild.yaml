@@ -25,3 +25,7 @@ steps:
   #Step 5 App running status by logging into same container and doing curl
   - name: 'gcr.io/cloud-builders/docker'
     args: ['exec', 'sohctl', 'curl', '-f', 'http://localhost/health.html']
+
+  #Step 6 : Push image into artifact registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'asia-docker.pkg.dev/vodafone-devsecops/vodafone-webapp-images/sohail:apachev1']
