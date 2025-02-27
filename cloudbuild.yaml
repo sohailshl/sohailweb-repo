@@ -26,6 +26,10 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['exec', 'sohctl', 'curl', '-f', 'http://localhost/health.html']
 
-  #Step 6 : Push image into artifact registry
+  #Step 6 tag docker image into artifact registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['tag', 'sohail:apachev1', 'asia-docker.pkg.dev/vodafone-devsecops/vodafone-webapp-images/sohail:apachev1']
+
+  #Step 7 Push image into artifact registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'asia-docker.pkg.dev/vodafone-devsecops/vodafone-webapp-images/sohail:apachev1']
