@@ -3,4 +3,4 @@ options:
 steps:
   #code build using container
   - name: 'gcr.io/cloud-builders/docker'
-      args: ['build', '-t', 'sohail:apachev1', '.']
+    args: ['build', '-t', 'sohail:apachev1', '.']
