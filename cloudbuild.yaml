@@ -6,6 +6,10 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'sohail:apachev1', '.']
   #Step 2
+  # do SAST in build container image with trivy
+  - name: 'aquasec/trivy:latest'
+    args: ['image' , 'sohail:apachev1']
+  #Step3
   #Creating container
   - name: 'gcr.io/cloud-builders/docker'
     args: ['run', '-idt', '--name', 'sohctl',
