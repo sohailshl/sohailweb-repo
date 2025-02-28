@@ -1,0 +1,20 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+steps:
+  - name: 'hashicorp/terraform'
+    args:
+      - 'init'
+    dir: 'codes' # Specify the directory where your .tf files are
+ 
+  - name: 'hashicorp/terraform'
+    args:
+      - 'apply'
+      - '-auto-approve' # Use with caution in production!
+    dir: 'codes'
+ 
+  # Optional: Add a step to destroy resources (for cleanup)
+  # - name: 'hashicorp/terraform'
+  #   args:
+  #     - 'destroy'
+  #     - '-auto-approve'
+  #   dir: 'codes'
