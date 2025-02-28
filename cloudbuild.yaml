@@ -33,3 +33,10 @@ steps:
   #Step 7 Push image into artifact registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'asia-docker.pkg.dev/vodafone-devsecops/vodafone-webapp-images/sohail-app:v1']
+
+  # Step 8  Deploy sample nginx container on GKE
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: ['get','nodes']
+    env: # passing k8s info
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=my-first-cluster-1
